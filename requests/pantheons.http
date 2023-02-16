@@ -8,5 +8,5 @@ Content-Type: application/json
 {
     "id_pantheon" : 4,
     "name_pantheon": "Celta",
-    "lore_pantheon": "es el panteon de morri"
+    "lore_pantheon": "es el panteon de morrigan"
 }
