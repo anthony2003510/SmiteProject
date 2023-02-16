@@ -18,7 +18,11 @@ export const createPanth = async (req,res) =>{
     }else
     {
         const pool = await getConnection();
-        await pool.request().input("name_pantheon", sql.NVarChar, "Celta");
+        await pool.request()
+        .input("id_pantheon", sql.Int, id_pantheon)
+        .input("name_pantheon", sql.NVarChar, name_pantheon)
+        .input("lore_pantheon", sql.NVarChar, lore_pantheon)
+        .query("INSERT INTO pantheons VALUES(@id_pantheon, @name_pantheon, @lore_pantheon)");
         res.json("nuevo panteon creado");
     }
 

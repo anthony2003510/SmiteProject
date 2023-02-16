@@ -6,7 +6,7 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "id_pantheon" : 4,
-    "name_pantheon": "Celta",
-    "lore_pantheon": "es el panteon de morrigan"
+    "id_pantheon" : 5,
+    "name_pantheon": "Romano",
+    "lore_pantheon": "Este es el panteon de bellona"
 }
