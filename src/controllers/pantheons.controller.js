@@ -1,9 +1,18 @@
 import { getConnection, sql } from "../bdd/conection.js"
-export const getPanth = async (req, res) => {
-    const pool = await getConnection()
-    const result = await pool.request().query('SELECT * FROM pantheons ')
 
-    res.json(result)
+export const getPanth = async (req, res) => 
+{
+    try 
+    {
+        const pool =await getConnection()
+        const result = await pool.request().query('SELECT * FROM pantheons ')
+        res.json(result)
+    } 
+    catch (error) 
+    {
+        res.status(500)
+        res.send(error.message)
+    }
 }
 
 export const createPanth = async (req,res) =>{
@@ -17,13 +26,21 @@ export const createPanth = async (req,res) =>{
         )
     }else
     {
-        const pool = await getConnection();
-        await pool.request()
-        .input("id_pantheon", sql.Int, id_pantheon)
-        .input("name_pantheon", sql.NVarChar, name_pantheon)
-        .input("lore_pantheon", sql.NVarChar, lore_pantheon)
-        .query("INSERT INTO pantheons VALUES(@id_pantheon, @name_pantheon, @lore_pantheon)");
-        res.json("nuevo panteon creado");
+       try 
+       {
+            const pool = await getConnection();
+            await pool.request()
+            .input("id_pantheon", sql.Int, id_pantheon)
+            .input("name_pantheon", sql.NVarChar, name_pantheon)
+            .input("lore_pantheon", sql.NVarChar, lore_pantheon)
+            .query("INSERT INTO pantheons VALUES(@id_pantheon, @name_pantheon, @lore_pantheon)");
+            res.json("nuevo panteon creado");
+       } 
+       catch (error) 
+       {
+            res.status(500)
+            res.send(error.message)
+       }
     }
 
     // Esto se hace, si hay un campo donde no es mandatory y no haga falta rellenarlo
